@@ -7,7 +7,7 @@ export const router = new Router([
   {
     path: '',
     controllers: [ExamplesController, JotsController],
-    view: 'app/views/JotView.html'
+    view: ''
   },
   {
     path: '#/about',

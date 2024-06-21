@@ -17,29 +17,23 @@
 
 <body>
   <!-- SECTION -->
-  <header>
-    <nav class="navbar navbar-dark navbar-expand bg-dark text-light px-2">
-      <a class="navbar-brand" href="#">
-        <img src="https://codeworks.blob.core.windows.net/public/assets/img/cw-mark.png" height="45" alt=""
-          loading="lazy">
-        <span class="ml-2">jot-note-taker</span>
-      </a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
-        aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-        <div class="navbar-nav">
-          <!-- NAVLINKS -->
-          <a href="#/about" class="nav-link">About</a>
+  <header class="bg-warning container-fluid">
+    <div class="row">
+      <div class="col-12 border-bottom border-dark border-3 d-flex align-items-center justify-content-between">
+        <h1>Field Notes</h1>
+        <div class="text-end">
+          <button id="menuBtn" class="btn btn-danger rounded-pill text-light" type="button" data-bs-toggle="offcanvas"
+            data-bs-target="#staticBackdrop" aria-controls="staticBackdrop">
+            <i class="mdi mdi-menu fs-3"></i>
+          </button>
         </div>
       </div>
-      <div class="flex-grow-1 justify-content-end align-items-center d-flex" id="authstate"></div>
-    </nav>
+    </div>
   </header>
 
   <!-- SECTION -->
-  <main>
+  <main class="bg-primary">
+
 
     <section id="router-view">
       <!-- primary viewport -->
@@ -48,15 +42,29 @@
   </main>
 
   <!-- SECTION -->
-  <footer class="bg-dark text-light">
-    <div class="text-center no-select">
-      <p class="mb-0"><small>Made with 💖 by CodeWorks</small></p>
+  <footer></footer>
+
+
+  <div class="offcanvas offcanvas-start bg-warning border-3 border-dark border-end" data-bs-backdrop="static"
+    tabindex="-1" id="staticBackdrop" aria-labelledby="staticBackdropLabel">
+    <div class="offcanvas-header">
+      <h5 class="offcanvas-title" id="staticBackdropLabel">Offcanvas</h5>
+      <button type="button" class="btn btn-warning ms-auto fs-3" data-bs-dismiss="offcanvas" aria-label="Close"><i
+          class="mdi mdi-close"></i></button>
     </div>
-  </footer>
+    <div id="jotsSelection" class="offcanvas-body">
+      <div>
+        I will not close if you click outside of me.
+      </div>
+    </div>
+  </div>
 
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+    integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"
+    integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy"
     crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.3.10/dist/sweetalert2.all.min.js"
     integrity="sha256-hw7v8jZF/rFEdx1ZHepT4D73AFTHLu/P9kEyrNesRyc=" crossorigin="anonymous"></script>
