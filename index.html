@@ -12,7 +12,7 @@
     crossorigin="anonymous" referrerpolicy="no-referrer" />
   <link rel="stylesheet" href="assets/style/main.css">
   <link rel="stylesheet" href="assets/style/style.css">
-  <title>jot-note-taker</title>
+  <title>Field Notes</title>
 </head>
 
 <body>
@@ -45,18 +45,32 @@
   <footer></footer>
 
 
-  <div class="offcanvas offcanvas-start bg-warning border-3 border-dark border-end" data-bs-backdrop="static"
+  <div class="offcanvas offcanvas-start bg-warning border-3 border-dark border-end show" data-bs-backdrop="static"
     tabindex="-1" id="staticBackdrop" aria-labelledby="staticBackdropLabel">
     <div class="offcanvas-header">
-      <h5 class="offcanvas-title" id="staticBackdropLabel">Offcanvas</h5>
+      <h3 class="offcanvas-title" id="staticBackdropLabel">Notes: 0</h3>
       <button type="button" class="btn btn-warning ms-auto fs-3" data-bs-dismiss="offcanvas" aria-label="Close"><i
           class="mdi mdi-close"></i></button>
     </div>
-    <div id="jotsSelection" class="offcanvas-body">
-      <div>
-        I will not close if you click outside of me.
+    <divS class="offcanvas-body container-fluid">
+      <div class="row">
+        <div class="col-12 d-flex align-items-center justify-content-between">
+          <div class="note-selector border-dark">
+            <h5>New Note <i class="mdi ms-4 fs-6 mdi-circle-slice-8"></i></h5>
+          </div>
+          <button class="btn btn-warning d-flex align-items-center"> <i class="mdi mdi-plus-circle-outline fs-2"></i>
+            Add</button>
+        </div>
       </div>
-    </div>
+      <div id="noteSelector" class="row my-2" role="button">
+        <div class="col-8 note-selector border-dark ms-2 d-flex">
+          <h5>> Buried Treasure</h5>
+        </div>
+        <div class="col-3">
+          <i class="mdi mdi-circle-slice-8"></i>
+        </div>
+      </div>
+    </divS>
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
