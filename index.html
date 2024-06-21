@@ -33,19 +33,52 @@
 
   <!-- SECTION -->
   <main class="bg-primary">
-
-
     <section id="router-view">
       <!-- primary viewport -->
     </section>
 
+    <section class="container shadow mt-5 border-3 border border-dark rounded">
+      <div id="activeNote" class="row">
+        <div class="col-12 mt-3">
+          <div class="row">
+            <div class="col-5 text-light d-flex flex-column justify-content-between">
+              <div>
+                <h2 class="mb-5">Buried Treasure <i class="mdi mdi-circle-slice-8 fs-5 text-dark"></i></h2>
+                <div>
+                  <h5 class="mb-3">Created At:</h5>
+                  <h5 class="mb-3">Last Updated:</h5>
+                </div>
+              </div>
+              <div class="d-flex justify-content-between">
+                <h6>Word Count: 0</h6>
+                <h6 class="mx-auto">Character Count: 0</h6>
+              </div>
+            </div>
+            <div class="col-7">
+              <form class="m-3">
+                <div class="form-floating">
+                  <textarea class="form-control border-dark border border-3" placeholder="Leave a comment here"
+                    id="floatingTextarea2"></textarea>
+                  <label for="floatingTextarea2">Comments</label>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+      </div>
+    </section>
+
+
   </main>
 
   <!-- SECTION -->
-  <footer></footer>
+  <footer>
+
+  </footer>
 
 
-  <div class="offcanvas offcanvas-start bg-warning border-3 border-dark border-end show" data-bs-backdrop="static"
+  <div class="offcanvas offcanvas-start bg-warning border-3 border-dark border-end" data-bs-backdrop="static"
     tabindex="-1" id="staticBackdrop" aria-labelledby="staticBackdropLabel">
     <div class="offcanvas-header">
       <h3 class="offcanvas-title" id="staticBackdropLabel">Notes: 0</h3>
@@ -62,8 +95,9 @@
             Add</button>
         </div>
       </div>
-      <div id="noteSelector" class="row my-2" role="button">
-        <div class="col-8 note-selector border-dark ms-2 d-flex">
+      <div id="noteSelector" class="row my-2">
+        <div class="col-8 note-selector border-dark ms-2 d-flex" role="button" data-bs-dismiss="offcanvas"
+          onclick="app.NotesController.drawActiveNote()">
           <h5>> Buried Treasure</h5>
         </div>
         <div class="col-3">

@@ -8,3 +8,7 @@
 .note-selector {
   border-bottom: 2px solid;
 }
+
+textarea {
+  min-height: 30em !important;
+}
