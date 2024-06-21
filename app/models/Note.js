@@ -5,6 +5,7 @@ export class Note {
   constructor(data) {
     this.title = data.title
     this.body = data.body
+    this.theme = data.theme
     this.id = generateId()
     this.dateCreated = new Date()
     this.dateUpdated = new Date()
@@ -15,10 +16,10 @@ export class Note {
     let wordCount = 0
     let space = false
     for (let i = 0; i < this.body.length; i++) {
-      if (this.body.length[i] == "" && space == false) {
+      if (this.body[i] == " " && space == false) {
         space = true
       }
-      else if (this.body.length[i] != '' && space == true) {
+      else if (this.body[i] != ' ' && space == true) {
         space = false
         wordCount++
       }
@@ -29,9 +30,7 @@ export class Note {
   get characterCount() {
     let characterCount = 0
     for (let i = 0; i < this.body.length; i++) {
-      if (this.body.length[i] == '') {
-        characterCount += 0
-      } else {
+      if (this.body[i] != ' ') {
         characterCount++
       }
     }
