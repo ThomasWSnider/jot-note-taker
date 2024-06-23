@@ -1,6 +1,7 @@
 import { AppState } from "../AppState.js";
 import { notesService } from "../services/NotesService.js";
-import { setHTML } from "../utils/Writer.js";
+import { getFormData } from "../utils/FormHandler.js";
+import { setHTML, setText } from "../utils/Writer.js";
 
 export class NotesController {
 
@@ -11,11 +12,33 @@ export class NotesController {
     this.drawNoteSelectors()
   }
 
+  createNewNote() {
+    event.preventDefault()
+    console.log('You are trying to create a new note, check back in an hour');
+    const form = event.target
+    const noteData = getFormData(form)
+    console.log('Here are the note deets', noteData);
+    notesService.createNewNote(noteData)
+    this.closeOffCanvas()
+  }
+
+  closeOffCanvas() {
+    const offCanvas = document.getElementById('staticBackdrop')
+    offCanvas.classList.remove('show')
+  }
+
   drawNoteSelectors() {
     const notes = AppState.notes
     let noteSelectorHTML = ``
     notes.forEach(note => noteSelectorHTML += note.noteSelectorTemplate)
     setHTML('noteSelector', noteSelectorHTML)
+    this.drawNotesQuantity()
+  }
+
+  drawNotesQuantity() {
+    const noteTotal = AppState.notes.length
+    let notesQuantity = `Notes: ${noteTotal}`
+    setText('notesQuantity', notesQuantity)
   }
 
   drawActiveNote() {

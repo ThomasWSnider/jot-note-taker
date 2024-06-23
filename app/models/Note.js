@@ -39,30 +39,34 @@ export class Note {
 
   get noteSelectorTemplate() {
     return `
-            <div class="col-8 note-selector border-dark ms-2 d-flex" role="button" data-bs-dismiss="offcanvas"
+            <div class="col-6 ms-2 d-flex mb-2" role="button" data-bs-dismiss="offcanvas"
               onclick="app.NotesController.selectActiveNote('${this.id}')">
-              <h5>> ${this.title}</h5>
+              <h5 class="m-0"> ${this.title}</h5>
             </div>
-            <div class="col-3">
-              <i class="mdi mdi-circle-slice-8"></i>
+            <div class="col-1 d-flex align-items-center mb-2">
+              <i class="mdi mdi-circle-slice-8" style="color:${this.theme}"></i>
             </div>
+            <div class="col-3 d-flex align-items-center mb-2">
+              <h4 class="fs-5">${this.shortDate}</h4>
+            </div>
+            <hr>
     `
   }
 
 
   get activeNoteTemplate() {
     return `
-            <div class="col-12 mt-3  shadow mt-5 border-3 border border-dark rounded">
+            <div class="col-12 p-3 active-note rounded" style="border: 3px solid ${this.theme}">
               <div class="row">
                 <div class="col-5 text-light d-flex flex-column justify-content-between">
                   <div>
-                    <h2 class="mb-5">${this.title} <i class="mdi mdi-circle-slice-8 fs-5 text-dark"></i></h2>
+                    <h2 class="mb-5">${this.title} <i class="mdi mdi-circle-slice-8 fs-5" style="color:${this.theme}"></i></h2>
                     <div>
                       <h5 class="mb-3">Created At: ${this.dateCreated}</h5>
                       <h5 class="mb-3">Last Updated: ${this.dateUpdated}</h5>
                     </div>
                   </div>
-                  <div class="d-flex justify-content-between">
+                  <div class="d-flex justify-content-between mb-0">
                     <h6>Word Count: ${this.wordCount}</h6>
                     <h6 class="mx-auto">Character Count: ${this.characterCount}</h6>
                   </div>
@@ -70,7 +74,7 @@ export class Note {
                 <div class="col-7">
                   <form class="m-3">
                     <div class="form-floating">
-                      <textarea class="form-control border-dark border border-3" placeholder="Leave a comment here"
+                      <textarea class="form-control border-dark border border-3" placeholder="Make a Note "
                         id="floatingTextarea2">${this.body}</textarea>
                       <label for="floatingTextarea2">${this.title}</label>
                     </div>
@@ -81,5 +85,8 @@ export class Note {
     `
   }
 
+  get shortDate() {
+    return this.dateCreated.toLocaleDateString()
+  }
 
 }

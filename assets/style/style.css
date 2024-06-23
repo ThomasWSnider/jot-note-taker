@@ -1,14 +1,36 @@
 /* BASIC STYLES HERE */
 
-#menuBtn {
-  margin: 0.5em 1em 0.5em 1em;
-  border: 3px solid #0c0305;
+.new-note-input {
+  border-bottom: 2px solid #0c0305 !important;
+  border-radius: 0;
+  width: 45%;
+}
+
+.new-note-form {
+  position: fixed;
+  top: auto;
+  left: -1000px;
+  height: 1px;
+  width: 1px;
+  overflow: hidden;
 }
 
 .note-selector {
   border-bottom: 2px solid;
 }
 
+.active-note {
+  height: 80%;
+  width: 90%;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #373a66;
+  box-shadow: 0 0 4px 1000px rgba(0, 0, 0, 0.5);
+}
+
+
 textarea {
-  min-height: 30em !important;
+  min-height: 25em !important;
 }

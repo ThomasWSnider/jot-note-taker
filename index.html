@@ -22,8 +22,9 @@
       <div class="col-12 border-bottom border-dark border-3 d-flex align-items-center justify-content-between">
         <h1>Field Notes</h1>
         <div class="text-end">
-          <button id="menuBtn" class="btn btn-danger rounded-pill text-light" type="button" data-bs-toggle="offcanvas"
-            data-bs-target="#staticBackdrop" aria-controls="staticBackdrop">
+          <button id="menuBtn" class="btn btn-warning rounded-pill text-dark" type="button" data-bs-toggle="offcanvas"
+            data-bs-target="#staticBackdrop" aria-controls="staticBackdrop"
+            onclick="app.NotesController.drawNoteSelectors()">
             <i class="mdi mdi-menu fs-3"></i>
           </button>
         </div>
@@ -32,19 +33,23 @@
   </header>
 
   <!-- SECTION -->
-  <main class="bg-primary">
-    <section id="router-view">
-      <!-- primary viewport -->
+  <main class="bg-primary main-img">
+    <section class="bg-blur">
+      <section id="router-view">
+        <!-- primary viewport -->
+      </section>
+
+
+      <section class="container">
+        <div id="activeNote" class="row">
+          <!-- Active Note Here -->
+        </div>
+        </div>
+      </section>
+
+
+
     </section>
-
-    <section class="container">
-      <div id="activeNote" class="row">
-        <!-- Active Note Here -->
-      </div>
-      </div>
-    </section>
-
-
   </main>
 
   <!-- SECTION -->
@@ -53,24 +58,33 @@
   </footer>
 
 
+
   <div class="offcanvas offcanvas-start bg-warning border-3 border-dark border-end" data-bs-backdrop="static"
     tabindex="-1" id="staticBackdrop" aria-labelledby="staticBackdropLabel">
     <div class="offcanvas-header">
-      <h3 class="offcanvas-title" id="staticBackdropLabel">Notes: 0</h3>
+      <h3 class="offcanvas-title" id="notesQuantity">Notes: 0</h3>
       <button type="button" class="btn btn-warning ms-auto fs-3" data-bs-dismiss="offcanvas" aria-label="Close"><i
           class="mdi mdi-close"></i></button>
     </div>
     <divS class="offcanvas-body container-fluid">
       <div class="row">
-        <div class="col-12 d-flex align-items-center justify-content-between">
-          <div class="note-selector border-dark">
-            <h5>New Note <i class="mdi ms-4 fs-6 mdi-circle-slice-8"></i></h5>
-          </div>
-          <button class="btn btn-warning d-flex align-items-center"> <i class="mdi mdi-plus-circle-outline fs-2"></i>
-            Add</button>
+        <div class="col-12">
+          <form onsubmit="app.NotesController.createNewNote()">
+            <div class="mb-3 d-flex justify-content-between align-items-center">
+              <label for="title" class="form-label new-note-form">Note Title</label>
+              <input type="text" class="form-control bg-warning border-warning mb-2 new-note-input" id="title"
+                placeholder="New Note" minlength="3" maxlength="15" name="title" required>
+              <label for="theme" class="form-label new-note-form">Note Color</label>
+              <input type="color" class="form-control form-control-color bg-warning border-dark border-2 p-1" id="theme"
+                name="theme" value="#b9101c" title="Choose your theme">
+              <button type="submit" class="btn btn-primary border-2 border-dark">
+                Add Note
+              </button>
+            </div>
         </div>
+        </form>
       </div>
-      <div id="noteSelector" class="row my-2">
+      <div id="noteSelector" class="row my-2 justify-content-start">
         <!-- Note Selectors Here -->
       </div>
     </divS>
