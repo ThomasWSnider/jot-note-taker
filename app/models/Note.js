@@ -53,43 +53,49 @@ export class Note {
     `
   }
 
-
   get activeNoteTemplate() {
     return `
-      <div class="col-12 p-3 active-note rounded" style="border: 3px solid ${this.theme}">
-        <div class="row">
-          <div class="col-5 text-light me-auto">
-            <div>
-              <h2 class="mb-5">${this.title} <i class="mdi mdi-circle-slice-8 fs-5" style="color: ${this.theme}"></i>
-              </h2>
-            </div>
+    <div class="col-12 p-3 active-note rounded" style="border: 3px solid ${this.theme}">
+      <div class="row">
+        <div class="col-5 text-light d-flex flex-column justify-content-between"">
+          <div class=" d-flex justify-content-between">
+          <h2 class=" mb-5">${this.title} <i class="mdi mdi-circle-slice-8 fs-5" style="color: ${this.theme}"></i>
+          </h2>
+        </div>
+        <div class="d-flex flex-column justify-content-between mb-auto">
+          <div class="text-light">
+            <h5 class="mb-3">Created: ${this.longDate}</h5>
+            <h5 class="mb-3">Updated: ${this.updatedDate}</h5>
           </div>
-          <div class="col-3 text-end">
-            <button id="offCanvasClose" type="button" class="btn btn-primary ms-auto fs-3"
-              style="background-color: #373a66;" onclick="app.NotesController.discardChanges()" aria-label="Close"><i
-                class="mdi mdi-close"></i></button>
+        </div>
+        <div class="d-flex justify-content-between">
+
+        </div>
+        <div class="d-flex justify-content-between mb-0 text-light pb-2">
+          <h6>Word Count: ${this.wordCount}</h6>
+          <h6 class="mx-auto">Character Count: ${this.characterCount}</h6>
+        </div>
+      </div>
+      <div class="col-7 text-end">
+        <button id="offCanvasClose" type="button" class="btn btn-primary ms-auto fs-3"
+          style="background-color: #373a66;" onclick="app.NotesController.discardChanges()" aria-label="Close"><i
+            class="mdi mdi-close"></i>
+        </button>
+        <div class="d-flex">
+          <div class="d-flex flex-column">
+            <button class="btn btn-success text-light ms-auto mb-3"><i
+                class="mdi mdi-content-save-outline fs-5"></i></button>
+            <button class="btn btn-danger text-light"><i class="mdi mdi-delete-outline fs-5"></i></button>
           </div>
-          <div class="col-5  d-flex flex-column justify-content-between">
-            <div class="text-light">
-              <h5 class="mb-3">Created: ${this.longDate}</h5>
-              <h5 class="mb-3">Last Updated: ${this.updatedDate}</h5>
-            </div>
-            <div class="d-flex justify-content-between mb-0 text-light">
-              <h6>Word Count: ${this.wordCount}</h6>
-              <h6 class="mx-auto">Character Count: ${this.characterCount}</h6>
-            </div>
-          </div>
-          <div class="col-7">
-            <form class="m-3">
-              <div class="form-floating">
-                <textarea class="form-control border-dark border border-3" placeholder="Make a Note "
-                  id="floatingTextarea2">${this.body}</textarea>
-                <label for="floatingTextarea2">${this.title}</label>
-              </div>
-            </form>
+          <div class="form-floating w-100">
+            <textarea class="form-control border-dark border border-3" placeholder="Make a Note "
+              id="floatingTextarea2">${this.body}</textarea>
+            <label for="floatingTextarea2">${this.title}</label>
           </div>
         </div>
       </div>
+    </div>
+    </div>
     `
   }
 
@@ -102,6 +108,6 @@ export class Note {
   }
 
   get updatedDate() {
-    return this.dateCreated.toLocaleString('en-US', { month: 'long', day: 'numeric', year: 'numeric', hour12: true, hour: '2-digit', minute: '2-digit' })
+    return this.dateCreated.toLocaleString('en-US', { month: 'long', day: 'numeric', year: 'numeric', hour: '2-digit', minute: '2-digit' })
   }
 }
