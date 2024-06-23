@@ -28,6 +28,16 @@ export class NotesController {
     closeButton.click()
   }
 
+  discardChanges() {
+    let confirm = window.confirm('This will discard all changes. Do you wish to continue?')
+    if (confirm == true) {
+      console.log('discarding changes');
+      notesService.discardChanges()
+    } else {
+      return
+    }
+  }
+
   drawNoteSelectors() {
     const notes = AppState.notes
     let noteSelectorHTML = ``
@@ -43,9 +53,12 @@ export class NotesController {
   }
 
   drawActiveNote() {
-    console.log('message received from DOM');
+    console.log(AppState.activeNote);
     const activeNote = AppState.activeNote
-    let activeNoteHTML = activeNote.activeNoteTemplate
+    let activeNoteHTML = ``
+    if (activeNote != null) {
+      activeNoteHTML += activeNote.activeNoteTemplate
+    }
     setHTML('activeNote', activeNoteHTML)
   }
 

@@ -1,4 +1,5 @@
 import { AppState } from "../AppState.js";
+import { NotesController } from "../controllers/NotesController.js";
 import { Note } from "../models/Note.js";
 
 class NotesService {
@@ -18,6 +19,10 @@ class NotesService {
   selectActiveNote(noteId) {
     const activeNote = AppState.notes.find(note => note.id == noteId)
     AppState.activeNote = activeNote
+  }
+
+  discardChanges() {
+    AppState.activeNote = null
   }
 
 }
