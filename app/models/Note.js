@@ -77,15 +77,15 @@ export class Note {
         </div>
       </div>
       <div class="col-7 text-end">
-        <button id="offCanvasClose" type="button" class="btn btn-primary ms-auto fs-3"
-          style="background-color: #373a66;" onclick="app.NotesController.discardChanges()" aria-label="Close"><i
-            class="mdi mdi-close"></i>
+        <button id="discardChangesBtn" type="button" class="btn btn-primary ms-auto fs-3"
+          style="background-color: #373a66;" onclick="app.NotesController.discardChanges()"><i
+            class="mdi mdi-close text-light"></i>
         </button>
         <div class="d-flex">
           <div class="d-flex flex-column">
             <button class="btn btn-success text-light ms-auto mb-3"><i
                 class="mdi mdi-content-save-outline fs-5"></i></button>
-            <button class="btn btn-danger text-light"><i class="mdi mdi-delete-outline fs-5"></i></button>
+            <button class="btn btn-danger text-light" onclick="app.NotesController.destroyNote('${this.id}')"><i class="mdi mdi-delete-outline fs-5"></i></button>
           </div>
           <div class="form-floating w-100">
             <textarea class="form-control border-dark border border-3" placeholder="Make a Note "

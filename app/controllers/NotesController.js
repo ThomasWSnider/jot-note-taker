@@ -15,11 +15,11 @@ export class NotesController {
 
   createNewNote() {
     event.preventDefault()
-    console.log('You are trying to create a new note, check back in an hour');
     const form = event.target
     const noteData = getFormData(form)
-    console.log('Here are the note deets', noteData);
     notesService.createNewNote(noteData)
+    // @ts-ignore
+    form.reset()
     this.closeOffCanvas()
   }
 
@@ -29,13 +29,12 @@ export class NotesController {
   }
 
   discardChanges() {
-    let confirm = window.confirm('This will discard all changes. Do you wish to continue?')
-    if (confirm == true) {
-      console.log('discarding changes');
-      notesService.discardChanges()
-    } else {
+    const confirm = window.confirm('This will discard all changes. Do you wish to continue?')
+    if (!confirm) {
       return
     }
+    console.log('discarding changes');
+    notesService.discardChanges()
   }
 
   drawNoteSelectors() {
@@ -53,7 +52,6 @@ export class NotesController {
   }
 
   drawActiveNote() {
-    console.log(AppState.activeNote);
     const activeNote = AppState.activeNote
     let activeNoteHTML = ``
     if (activeNote != null) {
@@ -64,5 +62,13 @@ export class NotesController {
 
   selectActiveNote(noteId) {
     notesService.selectActiveNote(noteId)
+  }
+
+  destroyNote(noteId) {
+    const wantsToDestroyNote = window.confirm('This will destroy your note. YOU CANNOT GET IT BACK! Do you wish to continue?')
+    if (!wantsToDestroyNote) {
+      return
+    }
+    notesService.destroyNote(noteId)
   }
 }
