@@ -1,3 +1,4 @@
+
 import { AppState } from "../AppState.js";
 import { notesService } from "../services/NotesService.js";
 import { getFormData } from "../utils/FormHandler.js";
@@ -23,8 +24,8 @@ export class NotesController {
   }
 
   closeOffCanvas() {
-    const offCanvas = document.getElementById('staticBackdrop')
-    offCanvas.classList.remove('show')
+    const closeButton = document.getElementById('offCanvasClose')
+    closeButton.click()
   }
 
   drawNoteSelectors() {
