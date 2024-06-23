@@ -11,6 +11,7 @@ export class NotesController {
 
     AppState.on('activeNote', this.drawActiveNote)
     this.drawNoteSelectors()
+    notesService.loadNotes()
   }
 
   createNewNote() {
@@ -34,7 +35,7 @@ export class NotesController {
       return
     }
     console.log('discarding changes');
-    notesService.discardChanges()
+    notesService.resetView()
   }
 
   drawNoteSelectors() {
@@ -62,6 +63,16 @@ export class NotesController {
 
   selectActiveNote(noteId) {
     notesService.selectActiveNote(noteId)
+  }
+
+  saveActiveNote() {
+    event.preventDefault()
+    const form = event.target
+    console.log('got the form');
+    // @ts-ignore
+    const textarea = form.body
+    const newData = textarea.value
+    notesService.saveActiveNote(newData)
   }
 
   destroyNote(noteId) {

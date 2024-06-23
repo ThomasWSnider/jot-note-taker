@@ -7,8 +7,8 @@ export class Note {
     this.body = data.body
     this.theme = data.theme
     this.id = generateId()
-    this.dateCreated = new Date()
-    this.dateUpdated = new Date()
+    this.dateCreated = data.dateCreated ? new Date(data.dateCreated) : new Date()
+    this.dateUpdated = data.dateUpdated ? new Date(data.dateUpdated) : new Date()
   }
 
 
@@ -67,9 +67,10 @@ export class Note {
             <h5 class="mb-3">Created: ${this.longDate}</h5>
             <h5 class="mb-3">Updated: ${this.updatedDate}</h5>
           </div>
+          <button type="button" class="btn btn-danger text-light"
+            onclick="app.NotesController.destroyNote('${this.id}')"><i class="mdi mdi-delete-outline fs-5"></i></button>
         </div>
         <div class="d-flex justify-content-between">
-
         </div>
         <div class="d-flex justify-content-between mb-0 text-light pb-2">
           <h6>Word Count: ${this.wordCount}</h6>
@@ -81,20 +82,19 @@ export class Note {
           style="background-color: #373a66;" onclick="app.NotesController.discardChanges()"><i
             class="mdi mdi-close text-light"></i>
         </button>
-        <div class="d-flex">
-          <div class="d-flex flex-column">
-            <button class="btn btn-success text-light ms-auto mb-3"><i
-                class="mdi mdi-content-save-outline fs-5"></i></button>
-            <button class="btn btn-danger text-light" onclick="app.NotesController.destroyNote('${this.id}')"><i class="mdi mdi-delete-outline fs-5"></i></button>
+        <form onsubmit="app.NotesController.saveActiveNote()" class="d-flex">
+          <div class=" d-flex flex-column">
+            <button type="submit" class="btn btn-success text-light ms-auto mb-3">
+              <i class="mdi mdi-content-save-outline fs-5"></i>
+            </button>
           </div>
-          <div class="form-floating w-100">
-            <textarea class="form-control border-dark border border-3" placeholder="Make a Note "
-              id="floatingTextarea2">${this.body}</textarea>
-            <label for="floatingTextarea2">${this.title}</label>
+          <div for="body" class="form-floating w-100" onsubmit="app.NotesController.saveNote(noteData)">
+            <textarea class="form-control border-dark border border-3" placeholder="Make a Note " id="body"
+              name="body">${this.body}</textarea>
+            <label for="body">${this.title}</label>
           </div>
-        </div>
+        </form>
       </div>
-    </div>
     </div>
     `
   }
@@ -108,6 +108,6 @@ export class Note {
   }
 
   get updatedDate() {
-    return this.dateCreated.toLocaleString('en-US', { month: 'long', day: 'numeric', year: 'numeric', hour: '2-digit', minute: '2-digit' })
+    return this.dateUpdated.toLocaleString('en-US', { month: 'long', day: 'numeric', year: 'numeric', hour: '2-digit', minute: '2-digit' })
   }
 }

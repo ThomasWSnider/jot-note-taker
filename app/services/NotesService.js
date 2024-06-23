@@ -1,6 +1,7 @@
 import { AppState } from "../AppState.js";
 import { NotesController } from "../controllers/NotesController.js";
 import { Note } from "../models/Note.js";
+import { loadState, saveState } from "../utils/Store.js";
 
 class NotesService {
 
@@ -21,8 +22,24 @@ class NotesService {
     AppState.activeNote = activeNote
   }
 
-  discardChanges() {
+  resetView() {
     AppState.activeNote = null
+  }
+
+  saveActiveNote(newData) {
+    const note = AppState.activeNote
+    note.body = newData
+    note.dateUpdated = new Date()
+    AppState.emit('activeNote')
+    this.saveNote()
+  }
+
+  loadNotes() {
+    AppState.notes = loadState('my-field-notes', [Note])
+  }
+
+  saveNote() {
+    saveState('my-field-notes', AppState.notes)
   }
 
   destroyNote(noteId) {
@@ -32,10 +49,9 @@ class NotesService {
       console.log('Try again bucko, your find index looks a little fishy');
       return
     }
-    console.log('Nice work, your ability to reference the lecture code is unparalleled');
     notes.splice(noteIndex, 1)
-
-    console.log(notes);
+    this.resetView()
+    this.saveNote()
   }
 }
 
