@@ -30,20 +30,14 @@ export class NotesController {
     closeButton.click()
   }
 
-  drawWordAndCharacterCount() {
-    debugger
-    const activeNote = AppState.activeNote
-    let wordCountInnerText = `Word Count: ${activeNote.wordCount}`
-    let characterCountInnerText = `Character Count: ${activeNote.characterCount}`
-    setText('wordCount', wordCountInnerText)
-    setText('characterCount', characterCountInnerText)
-  }
-
-  discardChanges() {
+  closeNote() {
     const saveButton = document.getElementById('saveBtn')
     saveButton.click()
     console.log('discarding changes');
     notesService.resetView()
+
+    const menuButton = document.getElementById('menuBtn')
+    menuButton.removeAttribute('disabled')
   }
 
   drawNoteSelectors() {
@@ -65,6 +59,9 @@ export class NotesController {
       activeNoteHTML += activeNote.activeNoteTemplate
     }
     setHTML('activeNote', activeNoteHTML)
+
+    const menuButton = document.getElementById('menuBtn')
+    menuButton.setAttribute('disabled', "")
   }
 
   selectActiveNote(noteId) {

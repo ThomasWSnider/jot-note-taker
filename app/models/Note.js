@@ -91,7 +91,7 @@ export class Note {
             </div>
             <div class="col-7 text-end">
               <button id="discardChangesBtn" type="button" class="btn btn primaryms-auto fs-3"
-                style="background-color: #373a66;" onclick="app.NotesController.discardChanges()">
+                style="background-color: #373a66;" onclick="app.NotesController.closeNote()">
                 <i class="mdi mdi-close text-light"></i>
               </button>
               <form onsubmit="app.NotesController.saveActiveNote()" class="d-flex" id="activeNoteBody">
