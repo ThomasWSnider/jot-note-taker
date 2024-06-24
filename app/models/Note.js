@@ -55,47 +55,54 @@ export class Note {
 
   get activeNoteTemplate() {
     return `
-    <div class="col-12 p-3 active-note rounded" style="border: 3px solid ${this.theme}">
-      <div class="row">
-        <div class="col-5 text-light d-flex flex-column justify-content-between"">
-          <div class=" d-flex justify-content-between">
-          <h2 class=" mb-5">${this.title} <i class="mdi mdi-circle-slice-8 fs-5" style="color: ${this.theme}"></i>
-          </h2>
-        </div>
-        <div class="d-flex flex-column justify-content-between mb-auto">
-          <div class="text-light">
-            <h5 class="mb-3">Created: ${this.longDate}</h5>
-            <h5 class="mb-3">Updated: ${this.updatedDate}</h5>
+        <div class="col-12 p-3 active-note rounded" style="border: 3px solid ${this.theme};">
+          <div class="row">
+            <div class="col-5 text-light">
+              <div class="row">
+                <div class="col-12">
+                  <h2 class="mb-4">
+                    ${this.title}
+                    <i class="mdi mdi-circle-slice-8" style="color: ${this.theme};"></i>
+                  </h2>
+                </div>
+                <div class="col-12 text-light">
+                  <h5 class="mb-3">Created: ${this.longDate}</h5>
+                  <h5 class="mb-3">Updated: ${this.updatedDate}</h5>
+                </div>
+                <div class="col-12">
+                  <div class="text-center mt-3">
+                    <button type="button" class="btn btn-danger text-light mx-auto" title="Delete Note"
+                      onclick="app.NotesController.destroyNote('${this.id}')">
+                      <i class="mdi mdi-trash-can-outline"></i>
+                    </button>
+                    <button form="activeNoteBody" id="saveBtn" class="btn btn-success text-light mx-auto ms-5"
+                      title="Save Note" type="submit">
+                      <i class="mdi mdi-content-save-outline"></i>
+                    </button>
+                  </div>
+                </div>
+                <div class="mb-0 mt-5 text-light">
+                  <div class="d-flex">
+                    <h6 id="wordCount">Word Count: ${this.wordCount}</h6>
+                    <h6 id="characterCount" class="mx-auto">Character Count: ${this.characterCount}</h6>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-7 text-end">
+              <button id="discardChangesBtn" type="button" class="btn btn primaryms-auto fs-3"
+                style="background-color: #373a66;" onclick="app.NotesController.discardChanges()">
+                <i class="mdi mdi-close text-light"></i>
+              </button>
+              <form onsubmit="app.NotesController.saveActiveNote()" class="d-flex" id="activeNoteBody">
+                <div class="form-floating w-100" for="body">
+                  <textarea class="form-control border-dark border-3" name="body" id="body" placeholder="Make a Note">${this.body}</textarea>
+                  <label for="body">${this.title}</label>
+                </div>
+              </form>
+            </div>
           </div>
-          <button type="button" class="btn btn-danger text-light"
-            onclick="app.NotesController.destroyNote('${this.id}')"><i class="mdi mdi-delete-outline fs-5"></i></button>
         </div>
-        <div class="d-flex justify-content-between">
-        </div>
-        <div class="d-flex justify-content-between mb-0 text-light pb-2">
-          <h6>Word Count: ${this.wordCount}</h6>
-          <h6 class="mx-auto">Character Count: ${this.characterCount}</h6>
-        </div>
-      </div>
-      <div class="col-7 text-end">
-        <button id="discardChangesBtn" type="button" class="btn btn-primary ms-auto fs-3"
-          style="background-color: #373a66;" onclick="app.NotesController.discardChanges()"><i
-            class="mdi mdi-close text-light"></i>
-        </button>
-        <form onsubmit="app.NotesController.saveActiveNote()" class="d-flex">
-          <div class=" d-flex flex-column">
-            <button type="submit" class="btn btn-success text-light ms-auto mb-3">
-              <i class="mdi mdi-content-save-outline fs-5"></i>
-            </button>
-          </div>
-          <div for="body" class="form-floating w-100" onsubmit="app.NotesController.saveNote(noteData)">
-            <textarea class="form-control border-dark border border-3" placeholder="Make a Note " id="body"
-              name="body">${this.body}</textarea>
-            <label for="body">${this.title}</label>
-          </div>
-        </form>
-      </div>
-    </div>
     `
   }
 

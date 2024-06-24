@@ -8,10 +8,11 @@ export class NotesController {
 
   constructor() {
     console.log("I'm here - NotesController");
+    notesService.loadNotes()
+    this.drawNoteSelectors()
 
     AppState.on('activeNote', this.drawActiveNote)
-    this.drawNoteSelectors()
-    notesService.loadNotes()
+    AppState.on('notes', this.drawNoteSelectors)
   }
 
   createNewNote() {
@@ -29,11 +30,18 @@ export class NotesController {
     closeButton.click()
   }
 
+  drawWordAndCharacterCount() {
+    debugger
+    const activeNote = AppState.activeNote
+    let wordCountInnerText = `Word Count: ${activeNote.wordCount}`
+    let characterCountInnerText = `Character Count: ${activeNote.characterCount}`
+    setText('wordCount', wordCountInnerText)
+    setText('characterCount', characterCountInnerText)
+  }
+
   discardChanges() {
-    const confirm = window.confirm('This will discard all changes. Do you wish to continue?')
-    if (!confirm) {
-      return
-    }
+    const saveButton = document.getElementById('saveBtn')
+    saveButton.click()
     console.log('discarding changes');
     notesService.resetView()
   }
@@ -43,14 +51,12 @@ export class NotesController {
     let noteSelectorHTML = ``
     notes.forEach(note => noteSelectorHTML += note.noteSelectorTemplate)
     setHTML('noteSelector', noteSelectorHTML)
-    this.drawNotesQuantity()
-  }
 
-  drawNotesQuantity() {
     const noteTotal = AppState.notes.length
     let notesQuantity = `Notes: ${noteTotal}`
     setText('notesQuantity', notesQuantity)
   }
+
 
   drawActiveNote() {
     const activeNote = AppState.activeNote
