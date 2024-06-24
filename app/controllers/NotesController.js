@@ -84,5 +84,8 @@ export class NotesController {
       return
     }
     notesService.destroyNote(noteId)
+
+    const menuButton = document.getElementById('menuBtn')
+    menuButton.removeAttribute('disabled')
   }
 }
